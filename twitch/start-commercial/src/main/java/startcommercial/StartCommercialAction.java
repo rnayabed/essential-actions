@@ -78,7 +78,7 @@ public class StartCommercialAction extends NormalAction
         } catch (Exception ex)
         {
             throw new MinorException(
-                    "Failed to start commercial", "Could not start commercial, please try again.");
+                    "Failed to start commercial", "Could not start commercial, please try again.\n\n"+ex.getMessage());
         }
     }
 
@@ -90,7 +90,7 @@ public class StartCommercialAction extends NormalAction
             {
                 twirk.disconnect();
             } catch (Exception ex) {
-                throw new MinorException("Twitch connection error", "Please try again.");
+                throw new MinorException("Twitch connection error", ex.getMessage());
             }
         }
     }

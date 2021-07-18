@@ -47,10 +47,11 @@ public class EmoteOnlyAction extends ToggleAction
         {
             connectToChannel();
             twirk.channelMessage("/emoteonly");
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             setCurrentStatus(false);
-            throw new MinorException("Failed to enable emote-only mode.", "Please try again.");
+            throw new MinorException("Failed to enable emote-only mode.", ex.getMessage());
         }
     }
 
@@ -64,7 +65,7 @@ public class EmoteOnlyAction extends ToggleAction
         } catch (Exception ex)
         {
             setCurrentStatus(true);
-            throw new MinorException("Failed to disable emote-only mode.", "Please try again.");
+            throw new MinorException("Failed to disable emote-only mode.", ex.getMessage());
         }
     }
 
@@ -105,7 +106,7 @@ public class EmoteOnlyAction extends ToggleAction
         } catch (Exception ex)
         {
             throw new MinorException("Failed to connect to Twitch",
-                    String.format("Could not connect to '%s' channel.", channel));
+                    String.format("Could not connect to '%s' channel.\n\n%s", channel, ex.getMessage()));
         }
     }
 
@@ -117,9 +118,10 @@ public class EmoteOnlyAction extends ToggleAction
             try
             {
                 twirk.disconnect();
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
-                throw new MinorException("Twitch connection error", "Please try again.");
+                throw new MinorException("Twitch connection error", ex.getMessage());
             }
         }
     }

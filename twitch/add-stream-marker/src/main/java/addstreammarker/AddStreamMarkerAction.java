@@ -63,7 +63,8 @@ public class AddStreamMarkerAction extends NormalAction
         } catch (Exception ex)
         {
             throw new MinorException(
-                    "Failed to add marker to stream\nCould not add stream marker, please try again."
+                    "Failed to add marker to stream\nCould not add stream marker, please try again.\nDetailed Message:\n" +
+                            ex.getMessage()
             );
         }
     }

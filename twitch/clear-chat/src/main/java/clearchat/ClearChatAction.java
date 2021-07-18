@@ -55,7 +55,7 @@ public class ClearChatAction extends NormalAction
         } catch (Exception ex)
         {
             throw new MinorException(
-                   String.format("Could not clear chat for '%s' channel, please try again.", channel)
+                   String.format("Could not clear chat for '%s' channel, please try again.\nDetailed Message:\n%s", channel, ex.getMessage())
             );
         }
     }

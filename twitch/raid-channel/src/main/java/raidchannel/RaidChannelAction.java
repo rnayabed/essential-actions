@@ -59,7 +59,7 @@ public class RaidChannelAction extends NormalAction
             twirk.channelMessage(String.format("/raid %s", channelToRaid));
         } catch (Exception ex)
         {
-            throw new MinorException(String.format("Could not raid channel '%s', please try again.", channelToRaid));
+            throw new MinorException(String.format("Could not raid channel '%s', please try again.\n\n%s", channelToRaid, ex.getMessage()));
         }
     }
 
@@ -71,7 +71,7 @@ public class RaidChannelAction extends NormalAction
             {
                 twirk.disconnect();
             } catch (Exception ex) {
-                throw new MinorException("Twitch connection error - Please try again.");
+                throw new MinorException("Twitch connection error - Please try again.\n\n+"+ex.getMessage());
             }
         }
     }

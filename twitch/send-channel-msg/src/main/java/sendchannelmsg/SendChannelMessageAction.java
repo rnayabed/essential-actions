@@ -57,12 +57,13 @@ public class SendChannelMessageAction extends NormalAction
             twirk = new TwirkBuilder(channel, credentials.getNickname(), credentials.getOauthToken()).build();
             twirk.connect();
             twirk.channelMessage(message);
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             throw new MinorException(
                     "Failed to send channel message",
-                    String.format("Could not send message '%s' to '%s' channel, please try again.",
-                            channel, message)
+                    String.format("Could not send message '%s' to '%s' channel, please try again.\n\n%s",
+                            message, channel, ex.getMessage())
             );
         }
     }
@@ -75,7 +76,7 @@ public class SendChannelMessageAction extends NormalAction
             {
                 twirk.disconnect();
             } catch (Exception ex) {
-                throw new MinorException("Twitch connection error", "Please try again.");
+                throw new MinorException("Twitch connection error", ex.getMessage());
             }
         }
     }

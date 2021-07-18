@@ -54,7 +54,7 @@ public class UnraidAction extends NormalAction
         {
             throw new MinorException(
                     "Failed to cancel channel raid",
-                    "Could not cancel channel raid, please try again.");
+                    "Could not cancel channel raid, please try again.\n\n"+ex.getMessage());
         }
     }
 
@@ -66,7 +66,7 @@ public class UnraidAction extends NormalAction
             {
                 twirk.disconnect();
             } catch (Exception ex) {
-                throw new MinorException("Twitch connection error", "Please try again.");
+                throw new MinorException("Twitch connection error", ex.getMessage());
             }
         }
     }

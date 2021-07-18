@@ -34,7 +34,7 @@ public class TwitchChatConnectAction extends NormalAction
     }
 
     @Override
-    public void onActionClicked() throws MinorException
+    public void onActionClicked()
     {
 
     }
@@ -86,11 +86,9 @@ public class TwitchChatConnectAction extends NormalAction
                         .show();
             } catch (Exception e)
             {
-                new StreamPiAlert(
+                throwMinorException(new MinorException(
                         "Failed to save chat credentials",
-                        "An error has occurred while clearing chat credentials, please try again.",
-                        StreamPiAlertType.WARNING)
-                        .show();
+                        "An error has occurred while clearing chat credentials, please try again"));
             }
         });
     }

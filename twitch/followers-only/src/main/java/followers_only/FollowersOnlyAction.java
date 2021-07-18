@@ -78,7 +78,7 @@ public class FollowersOnlyAction extends ToggleAction
         } catch (Exception ex)
         {
             setCurrentStatus(false);
-            throw new MinorException("Failed to enable followers only mode.", "Please try again.");
+            throw new MinorException("Failed to enable followers only mode.", ex.getMessage());
         }
     }
 
@@ -92,7 +92,7 @@ public class FollowersOnlyAction extends ToggleAction
         } catch (Exception ex)
         {
             setCurrentStatus(true);
-            throw new MinorException("Failed to disable followers only mode.", "Please try again.");
+            throw new MinorException("Failed to disable followers only mode.", ex.getMessage());
         }
     }
 
@@ -133,7 +133,7 @@ public class FollowersOnlyAction extends ToggleAction
         } catch (Exception ex)
         {
             throw new MinorException("Failed to connect to Twitch",
-                    String.format("Could not connect to '%s' channel.", channel));
+                    String.format("Could not connect to '%s' channel.\n\n%s", channel, ex.getMessage()));
         }
     }
 
@@ -147,7 +147,7 @@ public class FollowersOnlyAction extends ToggleAction
                 twirk.disconnect();
             } catch (Exception ex)
             {
-                throw new MinorException("Twitch connection error", "Please try again.");
+                throw new MinorException("Twitch connection error", ex.getMessage());
             }
         }
     }

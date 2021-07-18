@@ -89,8 +89,8 @@ public class SetColorAction extends NormalAction
         {
             throw new MinorException(
                     "Failed to change username color",
-                    String.format("Could not change username color to '%s' for '%s' channel, please try again.",
-                            color, channel)
+                    String.format("Could not change username color to '%s' for '%s' channel, please try again.\n\n%s",
+                            color, channel, ex.getMessage())
             );
         }
     }
@@ -103,7 +103,7 @@ public class SetColorAction extends NormalAction
             {
                 twirk.disconnect();
             } catch (Exception ex) {
-                throw new MinorException("Twitch connection error", "Please try again.");
+                throw new MinorException("Twitch connection error", ex.getMessage());
             }
         }
     }

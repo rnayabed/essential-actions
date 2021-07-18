@@ -55,7 +55,7 @@ public class SlowModeAction extends ToggleAction
         } catch (Exception ex)
         {
             setCurrentStatus(false);
-            throw new MinorException("Failed to enable slow mode.", "Please try again.");
+            throw new MinorException("Failed to enable slow mode.", ex.getMessage());
         }
     }
 
@@ -69,7 +69,7 @@ public class SlowModeAction extends ToggleAction
         } catch (Exception ex)
         {
             setCurrentStatus(true);
-            throw new MinorException("Failed to disable slow mode.", "Please try again.");
+            throw new MinorException("Failed to disable slow mode.", ex.getMessage());
         }
     }
 
@@ -98,9 +98,10 @@ public class SlowModeAction extends ToggleAction
                     try
                     {
                         setCurrentStatus(roomstate.getSlowModeTimer() > 0);
-                    } catch (MinorException e)
+                    }
+                    catch (MinorException e)
                     {
-                        throw new RuntimeException(e);
+                        throwMinorException(e.getMessage());
                     }
                 }
             });
@@ -108,7 +109,7 @@ public class SlowModeAction extends ToggleAction
         } catch (Exception ex)
         {
             throw new MinorException("Failed to connect to Twitch",
-                    String.format("Could not connect to '%s' channel.", channel));
+                    String.format("Could not connect to '%s' channel.\n\n%s", channel, ex.getMessage()));
         }
     }
 
@@ -122,7 +123,7 @@ public class SlowModeAction extends ToggleAction
                 twirk.disconnect();
             } catch (Exception ex)
             {
-                throw new MinorException("Twitch connection error", "Please try again.");
+                throw new MinorException("Twitch connection error", ex.getMessage());
             }
         }
     }

@@ -61,7 +61,7 @@ public class HostChannelAction extends NormalAction
         {
             throw new MinorException(
                     "Failed to host channel",
-                    String.format("Could not host channel '%s', please try again.", channelToHost));
+                    String.format("Could not host channel '%s', please try again.\n\n%s", channelToHost, ex.getMessage()));
         }
     }
 
@@ -73,7 +73,7 @@ public class HostChannelAction extends NormalAction
             {
                 twirk.disconnect();
             } catch (Exception ex) {
-                throw new MinorException("Twitch connection error - Please try again.");
+                throw new MinorException("Twitch connection error - Please try again.\n\n+"+ex.getMessage());
             }
         }
     }

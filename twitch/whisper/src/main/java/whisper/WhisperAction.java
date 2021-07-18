@@ -61,8 +61,8 @@ public class WhisperAction extends NormalAction
         {
             throw new MinorException(
                     "Failed to send message to user",
-                    String.format("Could not send message '%s' to user '%s', please try again.",
-                            username, message)
+                    String.format("Could not send message '%s' to user '%s', please try again.\n\n%s",
+                            username, message, ex.getMessage())
             );
         }
     }
@@ -75,7 +75,7 @@ public class WhisperAction extends NormalAction
             {
                 twirk.disconnect();
             } catch (Exception ex) {
-                throw new MinorException("Twitch connection error", "Please try again.");
+                throw new MinorException("Twitch connection error", ex.getMessage());
             }
         }
     }

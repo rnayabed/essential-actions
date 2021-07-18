@@ -54,7 +54,7 @@ public class UnhostAction extends NormalAction
         {
             throw new MinorException(
                     "Failed to cancel channel hosting",
-                    "Could not cancel channel hosting, please try again.");
+                    "Could not cancel channel hosting, please try again.\n\n"+ex.getMessage());
         }
     }
 
@@ -66,7 +66,7 @@ public class UnhostAction extends NormalAction
             {
                 twirk.disconnect();
             } catch (Exception ex) {
-                throw new MinorException("Twitch connection error", "Please try again.");
+                throw new MinorException("Twitch connection error", ex.getMessage());
             }
         }
     }
