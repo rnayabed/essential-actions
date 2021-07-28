@@ -1,8 +1,7 @@
 package com.stream_pi.websiteaction;
 
-import com.stream_pi.action_api.actionproperty.property.Property;
-import com.stream_pi.action_api.actionproperty.property.Type;
-import com.stream_pi.action_api.externalplugin.NormalAction;
+import com.stream_pi.action_api.api.NormalAction;
+import com.stream_pi.action_api.property.StringProperty;
 import com.stream_pi.util.exception.MinorException;
 import com.stream_pi.util.version.Version;
 
@@ -24,7 +23,7 @@ public class WebsiteAction extends NormalAction
     @Override
     public void initProperties() throws MinorException
     {
-        Property websiteUrl = new Property("websiteURL", Type.STRING);
+        StringProperty websiteUrl = new StringProperty("websiteURL");
         websiteUrl.setDisplayName("Website URL");
         websiteUrl.setDefaultValueStr("https://stream-pi.com/");
         websiteUrl.setCanBeBlank(false);
@@ -35,9 +34,8 @@ public class WebsiteAction extends NormalAction
     @Override
     public void onActionClicked() throws MinorException
     {
-        Property website = getClientProperties().getSingleProperty("websiteURL");
+        String urlToOpen = getClientProperties().getSingleProperty("websiteURL").getStringValue();
 
-        String urlToOpen = website.getStringValue();
 
         if(!urlToOpen.startsWith("https://") && !urlToOpen.startsWith("http://"))
         {
